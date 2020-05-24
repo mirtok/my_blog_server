@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+    resultType 返回值类型
+    parameterType 参数类型
+-->
+<mapper namespace="com.blog.dao.IUserDao">
+    <!--查询用户-->
+    <select id="findAll" resultType="com.blog.domain.User">
+        select * from user ;
+    </select>
+
+    <!--保存用户-->
+    <insert id="saveUser" parameterType="com.blog.domain.User">
+        insert into user(username,birthday,sex,address)values(#{username},#{birthday},#{sex},#{address});
+    </insert>
+
+    <!--ID查询-->
+    <select id="findById" parameterType="int" resultType="com.blog.domain.User">
+        select * from user where id = #{id};
+    </select>
+
+    <!--模糊查询-->
+    <select id="findByName" parameterType="string" resultType="com.blog.domain.User">
+        select * from user where username like #{username};
+    </select>
+</mapper>
